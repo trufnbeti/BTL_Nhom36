@@ -1,18 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Player : MonoBehaviour {
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float speed;
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void Update() {
+        rb.velocity = new Vector2(InputManager.Ins.Horizontal * speed, rb.velocity.y);
         
     }
 }
