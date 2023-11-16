@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     private float horizontal;
     private int hp;
 
+    private bool canJump;
     private bool isGrounded;
     private bool isJumping;
 
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour {
     }
 
     public void Jump() {
-        if (isJumping) return;
+        if (!canJump) return;
+        canJump = false;
         isJumping = true;
         rb.velocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up);
@@ -53,18 +55,21 @@ public class Player : MonoBehaviour {
     }
     
     private bool CheckGrounded() {
-        return Physics2D.BoxCast(transform.position, new Vector2(1, 0.1f), 0, Vector2.down, 1f - 0.05f, groundLayer);
+        return Physics2D.BoxCast(transform.position, new Vector2(1f - 0.2f, 0.1f), 0, Vector2.down, 1f, groundLayer);
     }
     
     private void OnDrawGizmos() {
-        Gizmos.DrawWireCube(transform.position - Vector3.up + Vector3.up * 0.05f, new Vector2(1, 0.1f));
+        Gizmos.DrawWireCube(transform.position - Vector3.up, new Vector2(1f - 0.2f, 0.1f));
     }
     
     private void Update() {
-        horizontal = InputManager.Ins.Horizontal;
         isGrounded = CheckGrounded();
+        if (isGrounded) {
+            canJump = true;
+        }
+        horizontal = InputManager.Ins.Horizontal;
         Move();
-        if (isJumping && rb.velocity.y < 0) {
+        if (!isGrounded && rb.velocity.y < 0) {
             isJumping = false;
             ChangeAnim(PlayerAnim.falldown1.ToString());
         }
