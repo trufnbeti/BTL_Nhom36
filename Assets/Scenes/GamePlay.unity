@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 14607320}
   - component: {fileID: 14607319}
   - component: {fileID: 14607318}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.021276593, z: 0}
   m_MaxChunkCount: 16
@@ -1770,7 +1770,7 @@ GameObject:
   - component: {fileID: 302101415}
   - component: {fileID: 302101414}
   - component: {fileID: 302101413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine GameObject (mario_m)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,7 +1826,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 
+  _animationName: jump1
   loop: 1
   timeScale: 1
 --- !u!23 &302101414
@@ -1869,7 +1869,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &302101415
 MeshFilter:
@@ -1891,7 +1891,7 @@ GameObject:
   - component: {fileID: 309976676}
   - component: {fileID: 309976675}
   - component: {fileID: 309976674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1947,8 +1947,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439e9a47221209b4fbd237a0cef40503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   rb: {fileID: 309976674}
-  speed: 7
+  skeleton: {fileID: 302101413}
+  playerModel: {fileID: 302101412}
+  speed: 6
+  jumpForce: 500
 --- !u!4 &309976678
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,7 +2433,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: fa9488f335b3c614ab6430bab15a3371, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2539,7 +2545,7 @@ GameObject:
   - component: {fileID: 2093937697}
   - component: {fileID: 2093937696}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
