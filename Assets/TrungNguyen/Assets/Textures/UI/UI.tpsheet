@@ -1,0 +1,63 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:77e899b0c9ed53b28fbf39d223496767:721cd7069e1677028d0f762c0c66b23f:64d56465927d50bb5400e4c66dc46a97$
+#
+:format=40300
+:texture=UI.png
+:size=2048x2048
+:pivotpoints=enabled
+:borders=enabled
+:alphahandling=ClearTransparentPixels
+
+Button-button_blue;1692;1512;317;124; 0.5;0.5; 79;79;62;31
+Button-button_gray;1692;1386;317;124; 0.5;0.5; 79;79;62;31
+Button-button_green;1686;1260;317;124; 0.5;0.5; 79;79;63;31
+Button-button_red;1686;1134;317;124; 0.5;0.5; 79;79;65;31
+Button-button_yellow;1686;1008;317;124; 0.5;0.5; 79;79;64;31
+button_play-bot;1905;548;135;100; 0.5;0.5; 0;0;0;0
+button_play-Button_BG;1686;384;201;201; 0.5;0.5; 0;0;0;0
+button_play-coin;2011;1582;36;54; 0.5;0.5; 0;0;0;0
+button_play-fire;264;261;131;121; 0.5;0.5; 0;0;0;0
+button_play-Left;162;248;100;134; 0.5;0.5; 0;0;0;0
+button_play-top;1908;697;135;101; 0.5;0.5; 0;0;0;0
+Continue-Continue_Button_Blue;1686;904;281;102; 0.5;0.5; 70;70;44;25
+Continue-Continue_Heart BG;1686;706;220;196; 0.5;0.5; 0;0;0;0
+Continue-Continue_Heart;584;49;196;175; 0.5;0.5; 0;0;0;0
+Continue-Continue_Shadow;1692;1638;323;51; 0.5;0.5; 0;0;0;0
+Main-Button-Button_Next;1969;800;70;126; 0.5;0.5; 0;0;0;0
+Main-Button-Coin_+;1969;928;78;78; 0.5;0.5; 0;0;0;0
+Main-Button-Coin_BG;1692;1969;350;78; 0.5;0.5; 0;0;0;0
+Main-Button-Gift;1905;650;142;45; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_!;850;948;67;69; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_BG;1;29;195;195; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_Daily;1;232;159;150; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_Gift;1889;388;155;158; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_Setting;397;269;109;113; 0.5;0.5; 0;0;0;0
+Main-Button-Icon_Spin;1889;226;151;160; 0.5;0.5; 0;0;0;0
+Main-Shadow_character;613;429;483;61; 0.5;0.5; 0;0;0;0
+Main-Tree_1;972;557;712;880; 0.5;0.5; 0;0;0;0
+Main-Tree_2;1;604;493;694; 0.5;0.5; 0;0;0;0
+Pause-Pause_BG;1;1300;969;747; 0.5;0.5; 242;242;187;187
+Pause-Pause_Button_Green;1686;587;217;117; 0.5;0.5; 54;54;57;29
+Pause-Pause_Music;508;270;112;112; 0.5;0.5; 0;0;0;0
+Pause-Pause_off;850;1247;119;51; 0.5;0.5; 0;0;0;0
+Pause-Pause_on;850;1194;119;51; 0.5;0.5; 0;0;0;0
+Pause-Pause_on_OFF!;850;756;62;65; 0.5;0.5; 0;0;0;0
+Pause-Pause_on_off;850;689;62;65; 0.5;0.5; 0;0;0;0
+Pause-Pause_Sound;622;270;112;112; 0.5;0.5; 0;0;0;0
+Pause-Pause_Vibration;736;270;112;112; 0.5;0.5; 0;0;0;0
+Pause_icon;1908;830;56;72; 0.5;0.5; 0;0;0;0
+Shop_icon;850;881;67;65; 0.5;0.5; 0;0;0;0
+Time_icon;850;1019;68;82; 0.5;0.5; 0;0;0;0
+Victory-Highscore_1;850;1103;89;89; 0.5;0.5; 0;0;0;0
+Victory-Highscore_BG_2;496;823;419;56; 0.5;0.5; 0;0;0;0
+Victory-Victory_BG;972;1439;718;608; 0.5;0.5; 180;179;152;152
+Victory-Victory_BG_2;613;492;521;63; 0.5;0.5; 0;0;0;0
+Victory-Victory_Flag;1;390;610;165; 0.5;0.5; 0;0;0;0
+Victory-Victory_Flag_2;1692;1691;337;276; 0.5;0.5; 0;0;0;0
+Victory-Victory_Star;198;40;191;184; 0.5;0.5; 0;0;0;0
+Victory-Victory_Star_off;391;40;191;184; 0.5;0.5; 0;0;0;0
