@@ -1,0 +1,104 @@
+
+bee.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+canh_duoi
+  rotate: false
+  xy: 865, 143
+  size: 176, 111
+  orig: 176, 111
+  offset: 0, 0
+  index: -1
+canh_tren
+  rotate: true
+  xy: 2, 3
+  size: 251, 255
+  orig: 251, 255
+  offset: 0, 0
+  index: -1
+dau
+  rotate: false
+  xy: 259, 2
+  size: 251, 252
+  orig: 251, 252
+  offset: 0, 0
+  index: -1
+kim
+  rotate: false
+  xy: 1044, 30
+  size: 111, 112
+  orig: 111, 112
+  offset: 0, 0
+  index: -1
+mat2_L
+  rotate: true
+  xy: 855, 2
+  size: 42, 55
+  orig: 42, 55
+  offset: 0, 0
+  index: -1
+mat2_R
+  rotate: true
+  xy: 799, 2
+  size: 33, 53
+  orig: 33, 53
+  offset: 0, 0
+  index: -1
+mat2_die_L
+  rotate: true
+  xy: 799, 37
+  size: 58, 54
+  orig: 58, 54
+  offset: 0, 0
+  index: -1
+mat2_die_R
+  rotate: false
+  xy: 855, 46
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+mat_L
+  rotate: false
+  xy: 737, 97
+  size: 126, 157
+  orig: 126, 157
+  offset: 0, 0
+  index: -1
+mat_R
+  rotate: true
+  xy: 1043, 144
+  size: 110, 148
+  orig: 110, 148
+  offset: 0, 0
+  index: -1
+rau_L
+  rotate: false
+  xy: 737, 14
+  size: 60, 81
+  orig: 60, 81
+  offset: 0, 0
+  index: -1
+rau_R
+  rotate: false
+  xy: 737, 14
+  size: 60, 81
+  orig: 60, 81
+  offset: 0, 0
+  index: -1
+than1
+  rotate: true
+  xy: 912, 9
+  size: 132, 130
+  orig: 132, 130
+  offset: 0, 0
+  index: -1
+than2
+  rotate: false
+  xy: 512, 5
+  size: 223, 249
+  orig: 223, 249
+  offset: 0, 0
+  index: -1

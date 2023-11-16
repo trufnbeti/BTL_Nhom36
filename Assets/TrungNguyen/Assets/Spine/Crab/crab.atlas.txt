@@ -1,0 +1,111 @@
+
+crab.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cangphai_1
+  rotate: false
+  xy: 2, 575
+  size: 156, 129
+  orig: 156, 129
+  offset: 0, 0
+  index: -1
+cangphai_2
+  rotate: false
+  xy: 340, 665
+  size: 146, 100
+  orig: 146, 100
+  offset: 0, 0
+  index: -1
+cangphai_3
+  rotate: true
+  xy: 184, 276
+  size: 264, 301
+  orig: 264, 301
+  offset: 0, 0
+  index: -1
+cangphai_4
+  rotate: false
+  xy: 2, 366
+  size: 180, 174
+  orig: 180, 174
+  offset: 0, 0
+  index: -1
+chanphai_1
+  rotate: false
+  xy: 2, 726
+  size: 119, 77
+  orig: 119, 77
+  offset: 0, 0
+  index: -1
+chanphai_2
+  rotate: false
+  xy: 246, 691
+  size: 92, 86
+  orig: 92, 86
+  offset: 0, 0
+  index: -1
+chanphai_3
+  rotate: true
+  xy: 123, 706
+  size: 78, 121
+  orig: 78, 121
+  offset: 0, 0
+  index: -1
+chanphai_sau1
+  rotate: false
+  xy: 236, 786
+  size: 92, 64
+  orig: 92, 64
+  offset: 0, 0
+  index: -1
+chanphai_sau2
+  rotate: false
+  xy: 330, 779
+  size: 73, 71
+  orig: 73, 71
+  offset: 0, 0
+  index: -1
+chanphai_sau3
+  rotate: true
+  xy: 136, 788
+  size: 62, 98
+  orig: 62, 98
+  offset: 0, 0
+  index: -1
+mat_die_phai
+  rotate: false
+  xy: 70, 805
+  size: 64, 45
+  orig: 64, 45
+  offset: 0, 0
+  index: -1
+mat_phai
+  rotate: false
+  xy: 160, 542
+  size: 176, 147
+  orig: 176, 147
+  offset: 0, 0
+  index: -1
+mat_thuong_phai
+  rotate: false
+  xy: 2, 808
+  size: 66, 42
+  orig: 66, 42
+  offset: 0, 0
+  index: -1
+than
+  rotate: false
+  xy: 2, 2
+  size: 494, 272
+  orig: 494, 272
+  offset: 0, 0
+  index: -1
+than_mat_phai
+  rotate: false
+  xy: 405, 767
+  size: 86, 83
+  orig: 86, 83
+  offset: 0, 0
+  index: -1

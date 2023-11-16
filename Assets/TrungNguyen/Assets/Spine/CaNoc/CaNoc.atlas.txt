@@ -1,0 +1,48 @@
+
+CaNoc.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_oar
+  rotate: false
+  xy: 166, 2
+  size: 74, 63
+  orig: 74, 63
+  offset: 0, 0
+  index: -1
+R_oar
+  rotate: true
+  xy: 239, 123
+  size: 74, 63
+  orig: 74, 63
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 199
+  size: 283, 311
+  orig: 284, 311
+  offset: 0, 0
+  index: -1
+eye
+  rotate: true
+  xy: 2, 19
+  size: 178, 80
+  orig: 178, 80
+  offset: 0, 0
+  index: -1
+eye_die
+  rotate: true
+  xy: 84, 19
+  size: 178, 80
+  orig: 178, 80
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 166, 67
+  size: 130, 71
+  orig: 130, 71
+  offset: 0, 0
+  index: -1
