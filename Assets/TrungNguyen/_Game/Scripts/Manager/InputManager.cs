@@ -10,7 +10,7 @@ public class InputManager : Singleton<InputManager>
     public float Horizontal => horizontal;
     private void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
-        if (Input.GetAxisRaw("Jump") > 0) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             GameManager.Ins.player.Jump();
         }
     }
