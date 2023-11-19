@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
         isJumping = true;
         rb.velocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up);
+        // rb.velocity = new Vector2(rb.velocity.x, 15);
         ChangeAnim(PlayerAnim.jump1.ToString());
     }
 

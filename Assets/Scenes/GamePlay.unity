@@ -1141,7 +1141,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 812c4ac0056cc884a90bc54eca8c9174, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   skeleton: {fileID: 302101413}
   playerModel: {fileID: 302101412}
   speed: 6
-  jumpForce: 450
+  jumpForce: 800
 --- !u!4 &309976678
 Transform:
   m_ObjectHideFlags: 0
@@ -1937,7 +1937,7 @@ TilemapCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758582819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
