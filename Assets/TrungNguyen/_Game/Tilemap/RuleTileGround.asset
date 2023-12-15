@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RuleTileGround
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 8013a9a2dd2cc2748bd73ee21611a932, type: 3}
-  m_DefaultGameObject: {fileID: 3038464734728568085, guid: d30e0857ed45c3d4fadbb0b942ea3ee4, type: 3}
+  m_DefaultGameObject: {fileID: 3635645516047616104, guid: 9687acfa90f498c43aa5d6f0ccbf7f3d, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules: []
