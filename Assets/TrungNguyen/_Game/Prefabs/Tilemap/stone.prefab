@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4700299079435842031}
   - component: {fileID: 3939238700975272834}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 616258184042645820}
   - component: {fileID: 4031888816367266382}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

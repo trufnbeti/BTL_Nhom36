@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     private float horizontal;
     private int hp;
 
-    private bool canJump;
+    [SerializeField] private bool canJump;
     private bool isGrounded;
     private bool isJumping;
 
@@ -65,12 +65,12 @@ public class Player : MonoBehaviour {
     
     private void Update() {
         isGrounded = CheckGrounded();
-        if (isGrounded) {
+        if (isGrounded && !isJumping) {
             canJump = true;
         }
         horizontal = InputManager.Ins.Horizontal;
         Move();
-        if (!isGrounded && rb.velocity.y < 0) {
+        if (!isGrounded && rb.velocity.y <= 0) {
             isJumping = false;
             ChangeAnim(PlayerAnim.falldown1.ToString());
         }

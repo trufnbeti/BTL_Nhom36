@@ -8,3 +8,16 @@ public enum PlayerAnim {
 	jump1,
 	falldown1
 }
+
+public enum GameTag {
+	Player,
+	PlayerCollider
+}
+
+public enum PoolType {
+	Coin,
+}
+
+public enum ParticleType {
+	
+}
