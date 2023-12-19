@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     private float horizontal;
     private int hp;
 
-    [SerializeField] private bool canJump;
+    private bool canJump;
     private bool isGrounded;
     private bool isJumping;
 

@@ -23,7 +23,7 @@ public class CoinBrick : Brick {
 		isHitted = true;
 		coiBox.SetActive(false);
 		coinBoxHitted.SetActive(true);
-		Coin coin = SimplePool.Spawn<Coin>(PoolType.Coin, transform.position, Quaternion.identity);
+		CoinInBrick coin = SimplePool.Spawn<CoinInBrick>(PoolType.Coin, transform.position, Quaternion.identity);
 		coin.OnInit();
 	}
 

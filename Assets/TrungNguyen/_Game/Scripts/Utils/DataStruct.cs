@@ -15,9 +15,19 @@ public enum GameTag {
 }
 
 public enum PoolType {
-	Coin,
+	None = -1,
+	Coin = 0,
+}
+
+public enum EventID {
+	AddCoin
+}
+
+public enum PrefKey {
+	Coin
 }
 
 public enum ParticleType {
-	
+	None = -1,
+	CollectCoin = 0
 }

@@ -4,21 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : GameUnit {
-    [SerializeField] private Rigidbody2D rb;
-    
-    public Vector3 startPos;
 
-    private void OnEnable() {
-        rb.velocity = new Vector2(0, 8f);
-    }
-
-    public void OnInit() {
-        startPos = TF.position;
-    }
-
-    private void Update() {
-        if (TF.position.y < startPos.y) {
-            OnDespawn();
-        }
-    }
+	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag(GameTag.Player.ToString())) {
+			this.PostEvent(EventID.AddCoin);
+			ParticlePool.Play(ParticleType.CollectCoin, TF.position, Quaternion.identity);
+			OnDespawn();
+		}
+	}
 }
