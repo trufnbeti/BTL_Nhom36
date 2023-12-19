@@ -11,7 +11,8 @@ public enum PlayerAnim {
 
 public enum GameTag {
 	Player,
-	PlayerCollider
+	PlayerCollider,
+	PlayerHit
 }
 
 public enum PoolType {

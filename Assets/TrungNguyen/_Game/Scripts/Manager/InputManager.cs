@@ -13,5 +13,9 @@ public class InputManager : Singleton<InputManager>
         if (Input.GetKeyDown(KeyCode.Space)) {
             GameManager.Ins.player.Jump();
         }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            GameManager.Ins.player.Attack();
+        }
     }
 }

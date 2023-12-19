@@ -169,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   rb: {fileID: 7815510310392363421}
-  startPos: {x: 0, y: 0, z: 0}
 --- !u!50 &7815510310392363421
 Rigidbody2D:
   serializedVersion: 4

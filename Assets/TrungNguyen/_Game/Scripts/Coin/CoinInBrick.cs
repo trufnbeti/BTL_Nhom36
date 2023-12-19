@@ -8,7 +8,7 @@ public class CoinInBrick : GameUnit {
     
     private Vector3 startPos;
 
-    public void OnInit() {
+    public override void OnInit() {
         startPos = TF.position;
         rb.velocity = new Vector2(0, 8f);
     }
