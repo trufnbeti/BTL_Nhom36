@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Snail : Enemy {
     enum Anim {
-        hiding
+        hiding,
+        move
     }
-    
+
+    public override void Move() {
+        base.Move();
+        ChangeAnim(Anim.move.ToString());
+    }
+
     protected override void OnDeath() {
         base.OnDeath();
-        skeleton.AnimationName = Anim.hiding.ToString();
+        ChangeAnim(Anim.hiding.ToString());
     }
 }

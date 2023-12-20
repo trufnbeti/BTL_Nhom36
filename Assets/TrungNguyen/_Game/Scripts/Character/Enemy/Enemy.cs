@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spine.Unity;
@@ -6,19 +5,50 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected SkeletonAnimation skeleton;
+    [SerializeField] private SkeletonAnimation skeleton;
     [SerializeField] private float speed;
+    private Transform tf;
+
+    private IState currentState;
     
     public Transform leftPos, rightPos;
-
-    private bool isDead = false, isRight = true;
-    private Transform tf;
+    private Vector3 targetPos;
+    private bool isDead = false, isRight;
 
     private void Awake() {
         tf = transform;
     }
 
-    public virtual void Move() { }
+    private void Start() {
+        OnInit();
+    }
+
+    protected virtual void OnInit() {
+        ChangeState(new PatrolState());
+        isRight = Random.value < 0.5f;
+        SetTarget();
+        ChangeDirection(isRight);
+    }
+
+    public virtual void Move() {
+        tf.position = Vector3.MoveTowards(tf.position, targetPos, speed * Time.deltaTime);
+        if (Vector3.Distance(tf.position, targetPos) < 0.1f) {
+            ChangeDirection(!isRight);
+            SetTarget();
+        }
+    }
+    
+    public void ChangeState(IState newState) {
+        if (currentState != null) {
+            currentState.OnExit(this);
+        }
+		
+        currentState = newState;
+
+        if (currentState != null) {
+            currentState.OnEnter(this);
+        }
+    }
     
 
     public void ChangeDirection(bool isRight) {
@@ -29,6 +59,16 @@ public class Enemy : MonoBehaviour
     protected virtual void OnDeath() {
         isDead = true;
         StartCoroutine(WaitForDespawn());
+    }
+    
+    protected void ChangeAnim(string animName) {
+        if (skeleton.AnimationName != animName) {
+            skeleton.AnimationName = animName;
+        }
+    }
+
+    private void SetTarget() {
+        targetPos = (isRight) ? rightPos.position : leftPos.position;
     }
 
     private IEnumerator WaitForDespawn() {
@@ -46,6 +86,12 @@ public class Enemy : MonoBehaviour
             }
         } else if (other.CompareTag(GameTag.Player.ToString())) {
             Debug.Log("DIE");
+        }
+    }
+
+    private void Update() {
+        if (currentState != null && !isDead) {
+            currentState.OnExcute(this);
         }
     }
 }
