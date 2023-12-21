@@ -8,4 +8,4 @@
 ## Hình ảnh từ đội phát triển
 ### NHÓM 36
 ![Team-member](./Assets/Textures/team.jpg)
-> NHóm 36
+> Nhóm 36
