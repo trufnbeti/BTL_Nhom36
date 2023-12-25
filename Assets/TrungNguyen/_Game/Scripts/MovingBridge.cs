@@ -1,22 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MovingBridge : MonoBehaviour
 {
-    [SerializeField] private Transform aPoint, bPoint;
+    [SerializeField] private Transform downPoint, upPoint;
     [SerializeField] private float speed;
     private Vector3 target;
     private Transform tf;
+    private bool isUp;
 
     private void Awake() {
         tf = transform;
     }
 
     private void Start() {
-        tf.position = aPoint.position;
-        target = bPoint.position;
+        OnInit();
+    }
+
+    private void OnInit() {
+        isUp = Random.value < 0.5f;
+        SetTarget();
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
@@ -31,13 +34,16 @@ public class MovingBridge : MonoBehaviour
         }
     }
 
+    private void SetTarget() {
+        target = (isUp) ? upPoint.position : downPoint.position;
+    }
+
     private void Update() {
         tf.position = Vector3.MoveTowards(tf.position, target, speed * Time.deltaTime);
-        
-        if (Vector2.Distance(transform.position, aPoint.position) < 0.01f) {
-            target = bPoint.position;
-        } else if (Vector2.Distance(transform.position, bPoint.position) < 0.01f) {
-            target = aPoint.position;
-        } 
+
+        if (Vector2.Distance(tf.position, target) < 0.1f) {
+            isUp = !isUp;
+            SetTarget();
+        }
     }
 }

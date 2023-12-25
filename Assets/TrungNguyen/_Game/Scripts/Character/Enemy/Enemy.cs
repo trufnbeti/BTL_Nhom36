@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private SkeletonAnimation skeleton;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject parent;
+    
     private Transform tf;
 
     private IState currentState;
@@ -14,6 +16,8 @@ public class Enemy : MonoBehaviour
     public Transform leftPos, rightPos;
     private Vector3 targetPos;
     private bool isDead = false, isRight;
+
+    public bool IsDead => isDead;
 
     private void Awake() {
         tf = transform;
@@ -28,6 +32,12 @@ public class Enemy : MonoBehaviour
         isRight = Random.value < 0.5f;
         SetTarget();
         ChangeDirection(isRight);
+    }
+
+    public void OnDespawn() {
+        if (IsDead) return;
+        isDead = true;
+        OnDeath();
     }
 
     public virtual void Move() {
@@ -57,7 +67,6 @@ public class Enemy : MonoBehaviour
     }
 
     protected virtual void OnDeath() {
-        isDead = true;
         StartCoroutine(WaitForDespawn());
     }
     
@@ -73,7 +82,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator WaitForDespawn() {
         yield return CacheComponent.GetWFS(Constant.TIME_TO_DESPAWN);
-        Destroy(gameObject);
+        Destroy(parent.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -82,7 +91,7 @@ public class Enemy : MonoBehaviour
             if (GameManager.Ins.player.IsFalling) {
                 Debug.Log("HI");
                 GameManager.Ins.player.HitEnemy();
-                OnDeath();
+                OnDespawn();
             }
         } else if (other.CompareTag(GameTag.Player.ToString())) {
             Debug.Log("DIE");

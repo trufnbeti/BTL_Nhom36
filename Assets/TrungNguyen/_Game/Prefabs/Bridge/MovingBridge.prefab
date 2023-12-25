@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8337690411303069056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MovingBridge
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,8 +43,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8337690411578241072}
-  m_Layer: 0
-  m_Name: aPoint
+  m_Layer: 7
+  m_Name: downPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 8337690412227353195}
   m_Layer: 7
   m_Name: cau (2)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8337690412227353190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a162d9dc0dbc644b67d9234abb31e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aPoint: {fileID: 8337690411578241072}
-  bPoint: {fileID: 8337690413138879944}
+  downPoint: {fileID: 8337690411578241072}
+  upPoint: {fileID: 8337690413138879944}
   speed: 2
 --- !u!61 &8337690412227353194
 BoxCollider2D:
@@ -221,8 +221,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8337690413138879944}
-  m_Layer: 0
-  m_Name: bPoint
+  m_Layer: 7
+  m_Name: upPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

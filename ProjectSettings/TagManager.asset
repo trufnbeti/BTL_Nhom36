@@ -7,6 +7,8 @@ TagManager:
   - PlayerCollider
   - DeadZone
   - PlayerHit
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - PlayerCollider
   - CheckPoint
   - Enemy
-  - 
+  - Bullet
   - 
   - 
   - 

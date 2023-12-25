@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8985039690096509950}
   - component: {fileID: 8985039690096509945}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8985039690169121415}
   - component: {fileID: 8985039690169121412}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: cong
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CacheComponent {
-	private static Dictionary<Collider, Character> characters = new Dictionary<Collider, Character>();
+	private static Dictionary<Collider2D, Enemy> enemies = new Dictionary<Collider2D, Enemy>();
 
-	public static Character GetCharacter(Collider col) {
-		if (!characters.ContainsKey(col)) {
-			characters.Add(col, col.GetComponent<Character>());
+	public static Enemy GetEnemy(Collider2D col) {
+		if (!enemies.ContainsKey(col)) {
+			enemies.Add(col, col.GetComponent<Enemy>());
 		}
 
-		return characters[col];
+		return enemies[col];
 	}
 
 	private static Dictionary<float, WaitForSeconds> WFS = new Dictionary<float, WaitForSeconds>();

@@ -12,12 +12,15 @@ public enum PlayerAnim {
 public enum GameTag {
 	Player,
 	PlayerCollider,
-	PlayerHit
+	PlayerHit,
+	Enemy,
+	Platform
 }
 
 public enum PoolType {
 	None = -1,
 	Coin = 0,
+	Bullet = 1
 }
 
 public enum EventID {
@@ -30,5 +33,6 @@ public enum PrefKey {
 
 public enum ParticleType {
 	None = -1,
-	CollectCoin = 0
+	CollectCoin = 0,
+	FireExplosion = 1,
 }

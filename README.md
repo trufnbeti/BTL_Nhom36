@@ -1,6 +1,5 @@
-# Jack's Adventure
-## High Concept
-### Jack đột ngột bị cuốn vào một cuộc hành trình đầy hiểm nguy, nơi anh phải mạo hiểm khám phá các vùng đất kỳ bí, thu thập những vật phẩm siêu năng lực, giải cứu công chúa bị giam cầm, và đối mặt với những quái vật đen tối đe đe doạ sự yên bình.
+# Hành trình kỳ diệu
+### Hành trình kỳ diệu là một trò chơi phiêu lưu kỳ bí nói về nhân vật Tom sử dụng phép thuật và khám phá bí ẩn để giải cứu thế giới khỏi sự đe dọa siêu nhiên đen tối.
 
 ![Hành trình kỳ diệu](./Assets/Textures/cover.png)
 > Ảnh minh hoạ

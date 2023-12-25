@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     private Transform tf;
 
     #region bool
+    private bool isRight = true;
     private bool canJump;
     private bool isGrounded;
     private bool isJumping;
@@ -52,13 +53,14 @@ public class Player : MonoBehaviour {
     }
 
     public void Attack() {
-        Debug.Log("Attack");
-        
+        Bullet bullet = SimplePool.Spawn<Bullet>(PoolType.Bullet, firePoint.position, Quaternion.identity);
+        bullet.OnInit(isRight ? 1 : -1);
     }
 
     private void Move() {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (Mathf.Abs(horizontal) > 0.1f) {
+            isRight = horizontal > 0;
             tf.rotation = Quaternion.Euler(new Vector3(0, horizontal > 0 ? 0 : 180, 0));
             if (isGrounded && !isJumping) {
                 ChangeAnim(PlayerAnim.run.ToString());
