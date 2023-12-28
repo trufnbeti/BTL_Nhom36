@@ -26,10 +26,4 @@ public class CoinBrick : Brick {
 		CoinInBrick coin = SimplePool.Spawn<CoinInBrick>(PoolType.Coin, transform.position, Quaternion.identity);
 		coin.OnInit();
 	}
-
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.CompareTag(GameTag.PlayerCollider.ToString())) {
-			OnHit();
-		}
-	}
 }

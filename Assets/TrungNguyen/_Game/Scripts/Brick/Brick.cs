@@ -14,4 +14,10 @@ public class Brick : MonoBehaviour
     
     protected virtual void Bounce(){ }
     
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag(GameTag.PlayerCollider.ToString())) {
+            OnHit();
+        }
+    }
+    
 }

@@ -35,4 +35,5 @@ public enum ParticleType {
 	None = -1,
 	CollectCoin = 0,
 	FireExplosion = 1,
+	BrickExplosion = 2
 }

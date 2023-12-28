@@ -1,0 +1,34 @@
+
+mushroom.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dau
+  rotate: false
+  xy: 2, 2
+  size: 449, 312
+  orig: 449, 312
+  offset: 0, 0
+  index: -1
+mat
+  rotate: false
+  xy: 87, 316
+  size: 328, 189
+  orig: 328, 189
+  offset: 0, 0
+  index: -1
+mat  phai
+  rotate: true
+  xy: 2, 465
+  size: 40, 83
+  orig: 40, 83
+  offset: 0, 0
+  index: -1
+mat trai
+  rotate: true
+  xy: 2, 465
+  size: 40, 83
+  orig: 40, 83
+  offset: 0, 0
+  index: -1

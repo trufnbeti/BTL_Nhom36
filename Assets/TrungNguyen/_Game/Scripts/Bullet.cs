@@ -7,8 +7,10 @@ public class Bullet : GameUnit
 {
 	[SerializeField] private float speed;
 	private int direction;
+	private float timer = 0;
 
 	public void OnInit(int direction) {
+		timer = 0;
 		this.direction = direction;
 	}
 
@@ -30,6 +32,12 @@ public class Bullet : GameUnit
 	}
 
 	private void Update() {
+		timer += Time.deltaTime;
+		if (timer >= Constant.TIME_TO_DESPAWN_BULLET) {
+			SimplePool.Despawn(this);
+			return;
+		}
 		TF.position += TF.right * speed * direction * Time.deltaTime;
+		
 	}
 }

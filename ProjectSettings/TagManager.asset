@@ -9,6 +9,7 @@ TagManager:
   - PlayerHit
   - Bullet
   - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX

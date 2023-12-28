@@ -7,10 +7,10 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour {
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SkeletonAnimation skeleton;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject playerModel;
     
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
@@ -24,6 +24,8 @@ public class Player : MonoBehaviour {
     private bool canJump;
     private bool isGrounded;
     private bool isJumping;
+    private bool isPowerUp;
+    public bool IsPowerUp => isPowerUp;
     public bool IsFalling => rb.velocity.y < 0 && !isGrounded;
     #endregion
     
@@ -33,14 +35,25 @@ public class Player : MonoBehaviour {
     }
 
     private void Start() {
+        OnInit();
+    }
+
+    private void OnInit() {
         tf = transform;
         ChangeAnim(PlayerAnim.idle.ToString());
+        playerModel.transform.localScale = Constant.POWER_OFF;
     }
 
     public void HitEnemy() {
         rb.velocity = Vector2.zero;
         rb.AddForce(500 * Vector2.up);
         ChangeAnim(PlayerAnim.jump1.ToString());
+    }
+
+    public void OnPowerUp() {
+        if (isPowerUp) return;
+        isPowerUp = true;
+        StartCoroutine(WaitForPowerUp());
     }
 
     public void Jump() {
@@ -55,6 +68,15 @@ public class Player : MonoBehaviour {
     public void Attack() {
         Bullet bullet = SimplePool.Spawn<Bullet>(PoolType.Bullet, firePoint.position, Quaternion.identity);
         bullet.OnInit(isRight ? 1 : -1);
+    }
+
+    private IEnumerator WaitForPowerUp() {
+        for (int i = 0; i < 5; ++i) {
+            yield return CacheComponent.GetWFS(Constant.TIME_TO_BLINK);
+            playerModel.transform.localScale = Vector3.zero;
+            yield return CacheComponent.GetWFS(Constant.TIME_TO_BLINK);
+            playerModel.transform.localScale = Constant.POWER_ON;
+        }
     }
 
     private void Move() {
