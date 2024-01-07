@@ -1,0 +1,97 @@
+
+turtle.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chan_sau1
+  rotate: true
+  xy: 1034, 11
+  size: 132, 157
+  orig: 132, 157
+  offset: 0, 0
+  index: -1
+chan_truoc1
+  rotate: true
+  xy: 1034, 11
+  size: 132, 157
+  orig: 132, 157
+  offset: 0, 0
+  index: -1
+chan_sau2
+  rotate: false
+  xy: 1045, 159
+  size: 132, 157
+  orig: 132, 157
+  offset: 0, 0
+  index: -1
+chan_truoc2
+  rotate: false
+  xy: 1045, 159
+  size: 132, 157
+  orig: 132, 157
+  offset: 0, 0
+  index: -1
+dau
+  rotate: true
+  xy: 547, 143
+  size: 365, 358
+  orig: 365, 358
+  offset: 0, 0
+  index: -1
+mai_duoi
+  rotate: false
+  xy: 547, 2
+  size: 485, 139
+  orig: 485, 139
+  offset: 0, 0
+  index: -1
+mai_tren
+  rotate: false
+  xy: 2, 116
+  size: 543, 392
+  orig: 543, 392
+  offset: 0, 0
+  index: -1
+mat2_L
+  rotate: true
+  xy: 2, 43
+  size: 71, 58
+  orig: 71, 58
+  offset: 0, 0
+  index: -1
+mat2_R
+  rotate: true
+  xy: 62, 54
+  size: 60, 58
+  orig: 60, 58
+  offset: 0, 0
+  index: -1
+mat2_die_L
+  rotate: true
+  xy: 122, 54
+  size: 60, 54
+  orig: 60, 54
+  offset: 0, 0
+  index: -1
+mat2_die_R
+  rotate: false
+  xy: 178, 60
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+mat_L
+  rotate: false
+  xy: 907, 318
+  size: 156, 190
+  orig: 156, 190
+  offset: 0, 0
+  index: -1
+mat_R
+  rotate: false
+  xy: 907, 145
+  size: 136, 171
+  orig: 136, 171
+  offset: 0, 0
+  index: -1

@@ -81,20 +81,15 @@ public class Enemy : MonoBehaviour
     }
 
     private IEnumerator WaitForDespawn() {
-        yield return CacheComponent.GetWFS(Constant.TIME_TO_DESPAWN);
+        yield return CacheComponent.GetWFS(Constant.TIME_DESPAWN_ENEMY);
         Destroy(parent.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (isDead) return;
-        if (other.CompareTag(GameTag.PlayerHit.ToString())) {
-            if (GameManager.Ins.player.IsFalling) {
-                Debug.Log("HI");
-                GameManager.Ins.player.HitEnemy();
-                OnDespawn();
+        if (other.CompareTag(GameTag.Player.ToString())) {
+            if (!isDead) {
+                GameManager.Ins.player.OnDeath();
             }
-        } else if (other.CompareTag(GameTag.Player.ToString())) {
-            Debug.Log("DIE");
         }
     }
 

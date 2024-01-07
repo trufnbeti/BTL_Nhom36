@@ -16,7 +16,9 @@ public class Brick : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag(GameTag.PlayerCollider.ToString())) {
-            OnHit();
+            if (!GameManager.Ins.player.IsDead) {
+                OnHit();
+            }
         }
     }
     

@@ -1,0 +1,34 @@
+
+flower.png
+size: 191,191
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Shape 1
+  rotate: true
+  xy: 2, 149
+  size: 40, 187
+  orig: 40, 187
+  offset: 0, 0
+  index: -1
+flower1
+  rotate: true
+  xy: 52, 100
+  size: 47, 56
+  orig: 47, 56
+  offset: 0, 0
+  index: -1
+flower2
+  rotate: true
+  xy: 110, 99
+  size: 48, 53
+  orig: 48, 53
+  offset: 0, 0
+  index: -1
+flower3
+  rotate: true
+  xy: 2, 102
+  size: 45, 48
+  orig: 45, 48
+  offset: 0, 0
+  index: -1

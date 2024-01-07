@@ -13,9 +13,10 @@ public class Coin : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag(GameTag.Player.ToString())) {
-			this.PostEvent(EventID.AddCoin);
-			ParticlePool.Play(ParticleType.CollectCoin, tf.position, Quaternion.identity);
-			Destroy(gameObject);
+			if (!GameManager.Ins.player.IsDead) {
+				this.PostEvent(EventID.AddCoin, tf.position);
+				Destroy(gameObject);
+			}
 		}
 	}
 }

@@ -11,6 +11,16 @@ public class CacheComponent {
 
 		return enemies[col];
 	}
+	
+	private static Dictionary<Collider2D, Plant> plants = new Dictionary<Collider2D, Plant>();
+
+	public static Plant GetPlant(Collider2D col) {
+		if (!plants.ContainsKey(col)) {
+			plants.Add(col, col.GetComponent<Plant>());
+		}
+
+		return plants[col];
+	}
 
 	private static Dictionary<float, WaitForSeconds> WFS = new Dictionary<float, WaitForSeconds>();
 

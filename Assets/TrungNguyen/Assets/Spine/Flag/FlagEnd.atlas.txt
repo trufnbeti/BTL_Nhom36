@@ -1,0 +1,13 @@
+
+FlagEnd.png
+size: 320,320
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+la_co
+  rotate: false
+  xy: 2, 158
+  size: 316, 160
+  orig: 316, 160
+  offset: 0, 0
+  index: -1

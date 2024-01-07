@@ -15,8 +15,7 @@ public class CoinInBrick : GameUnit {
 
     private void Update() {
         if (TF.position.y < startPos.y) {
-            this.PostEvent(EventID.AddCoin);
-            ParticlePool.Play(ParticleType.CollectCoin, TF.position, Quaternion.identity);
+            this.PostEvent(EventID.AddCoin, TF.position);
             OnDespawn();
         }
     }

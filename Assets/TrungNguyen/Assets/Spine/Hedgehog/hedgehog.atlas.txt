@@ -1,0 +1,146 @@
+
+hedgehog.png
+size: 1719,619
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/than
+  rotate: true
+  xy: 449, 55
+  size: 562, 430
+  orig: 562, 430
+  offset: 0, 0
+  index: -1
+1/than2
+  rotate: true
+  xy: 1242, 5
+  size: 612, 359
+  orig: 612, 359
+  offset: 0, 0
+  index: -1
+2/chan_sau1
+  rotate: true
+  xy: 1603, 103
+  size: 101, 108
+  orig: 101, 108
+  offset: 0, 0
+  index: -1
+1/chan_sau1
+  rotate: true
+  xy: 1603, 103
+  size: 101, 108
+  orig: 101, 108
+  offset: 0, 0
+  index: -1
+2/chan_truoc1
+  rotate: true
+  xy: 1603, 206
+  size: 103, 110
+  orig: 103, 110
+  offset: 0, 0
+  index: -1
+1/chan_truoc1
+  rotate: true
+  xy: 1603, 206
+  size: 103, 110
+  orig: 103, 110
+  offset: 0, 0
+  index: -1
+2/mai
+  rotate: true
+  xy: 2, 39
+  size: 578, 445
+  orig: 578, 445
+  offset: 0, 0
+  index: -1
+2/mat2_L
+  rotate: true
+  xy: 50, 6
+  size: 31, 44
+  orig: 31, 44
+  offset: 0, 0
+  index: -1
+1/mat2_L
+  rotate: true
+  xy: 50, 6
+  size: 31, 44
+  orig: 31, 44
+  offset: 0, 0
+  index: -1
+2/mat2_R
+  rotate: true
+  xy: 2, 7
+  size: 30, 46
+  orig: 30, 46
+  offset: 0, 0
+  index: -1
+1/mat2_R
+  rotate: true
+  xy: 2, 7
+  size: 30, 46
+  orig: 30, 46
+  offset: 0, 0
+  index: -1
+2/mat2_die_L
+  rotate: false
+  xy: 497, 10
+  size: 54, 43
+  orig: 54, 43
+  offset: 0, 0
+  index: -1
+1/mat2_die_L
+  rotate: false
+  xy: 497, 10
+  size: 54, 43
+  orig: 54, 43
+  offset: 0, 0
+  index: -1
+2/mat2_die_R
+  rotate: true
+  xy: 449, 2
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+1/mat2_die_R
+  rotate: true
+  xy: 449, 2
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+2/mat_L
+  rotate: false
+  xy: 1603, 461
+  size: 114, 156
+  orig: 114, 156
+  offset: 0, 0
+  index: -1
+1/mat_L
+  rotate: false
+  xy: 1603, 461
+  size: 114, 156
+  orig: 114, 156
+  offset: 0, 0
+  index: -1
+2/mat_R
+  rotate: false
+  xy: 1603, 311
+  size: 109, 148
+  orig: 109, 148
+  offset: 0, 0
+  index: -1
+1/mat_R
+  rotate: false
+  xy: 1603, 311
+  size: 109, 148
+  orig: 109, 148
+  offset: 0, 0
+  index: -1
+2/than
+  rotate: true
+  xy: 881, 5
+  size: 612, 359
+  orig: 612, 359
+  offset: 0, 0
+  index: -1

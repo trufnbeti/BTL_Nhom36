@@ -6,15 +6,25 @@ public enum PlayerAnim {
 	idle,
 	run,
 	jump1,
-	falldown1
+	falldown1,
+	climb_down,
+	die
 }
 
 public enum GameTag {
 	Player,
 	PlayerCollider,
-	PlayerHit,
 	Enemy,
-	Platform
+	Platform,
+	Plant
+}
+
+public enum GameState
+{
+	MainMenu = 1,
+	GamePlay = 2,
+	Pause = 3,
+	GameEnd = 4
 }
 
 public enum PoolType {
@@ -24,16 +34,21 @@ public enum PoolType {
 }
 
 public enum EventID {
-	AddCoin
+	AddCoin,
+	SavePoint,
+	LowerFlag,
+	Win
 }
 
 public enum PrefKey {
-	Coin
+	Coin,
+	Level
 }
 
 public enum ParticleType {
 	None = -1,
 	CollectCoin = 0,
 	FireExplosion = 1,
-	BrickExplosion = 2
+	BrickExplosion = 2,
+	Confetti = 3
 }

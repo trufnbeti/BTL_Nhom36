@@ -28,12 +28,18 @@ public class Bullet : GameUnit
 			e.OnDespawn();
 		} else if (other.CompareTag(GameTag.Platform.ToString())){
 			OnDespawn();
+		} else if (other.CompareTag(GameTag.Plant.ToString())) {
+			Plant e = CacheComponent.GetPlant(other);
+			if (!e.IsDead) {
+				OnDespawn();
+			}
+			e.OnDespawn();
 		}
 	}
 
 	private void Update() {
 		timer += Time.deltaTime;
-		if (timer >= Constant.TIME_TO_DESPAWN_BULLET) {
+		if (timer >= Constant.TIME_DESPAWN_BULLET) {
 			SimplePool.Despawn(this);
 			return;
 		}

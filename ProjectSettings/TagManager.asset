@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Enemy
   - Platform
+  - Plant
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - CheckPoint
   - Enemy
   - Bullet
-  - 
-  - 
+  - Grass
+  - Flag
   - 
   - 
   - 
