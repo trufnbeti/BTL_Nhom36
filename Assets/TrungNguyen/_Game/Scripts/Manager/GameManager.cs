@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] private int coin;
     public Player player;
     public Camera cam;
-    private GameState _gameState;
+    [SerializeField]private GameState _gameState;
     public bool IsState(GameState state) => _gameState == state;
     private  void Awake() {
         ChangeState(GameState.MainMenu);
@@ -27,16 +27,67 @@ public class GameManager : Singleton<GameManager> {
     }
     
     private void Start() {
-        ChangeState(GameState.GamePlay);
         coin = Pref.Coin;
+        ChangeState(GameState.MainMenu);
+        UIManager.Ins.OpenUI<UIMainMenu>();
         this.RegisterListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
+        this.RegisterListener(EventID.StartGame, (_) => OnStartGame());
+        this.RegisterListener(EventID.MainMenu, (_) => OnMainMenu());
+        this.RegisterListener(EventID.Resume, (_) => OnResume());
+        this.RegisterListener(EventID.Pause, (_) => OnPause());
+        this.RegisterListener(EventID.Replay, (_) => OnReplay());
+        this.RegisterListener(EventID.Lose, (_) => OnLose());
     }
 
     private void OnDisable() {
         this.RemoveListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
+        this.RemoveListener(EventID.StartGame, (_) => OnStartGame());
+        this.RemoveListener(EventID.MainMenu, (_) => OnMainMenu());
+        this.RemoveListener(EventID.Resume, (_) => OnResume());
+        this.RemoveListener(EventID.Pause, (_) => OnPause());
+        this.RemoveListener(EventID.Replay, (_) => OnReplay());
+        this.RegisterListener(EventID.Lose, (_) => OnLose());
     }
 
-    public void AddCoin(Vector3 pos) {
+    #region Event
+
+    private void OnStartGame() {
+        ChangeState(GameState.GamePlay);
+        UIManager.Ins.OpenUI<UIGamePlay>();
+    }
+
+    private void OnMainMenu() {
+        ChangeState(GameState.MainMenu);
+        Time.timeScale = 1;
+        UIManager.Ins.CloseAll();
+        UIManager.Ins.OpenUI<UIMainMenu>();
+    }
+
+    private void OnResume() {
+        ChangeState(GameState.GamePlay);
+        Time.timeScale = 1;
+        UIManager.Ins.CloseUI<UIPauseSetting>();
+    }
+
+    private void OnPause() {
+        ChangeState(GameState.Pause);
+        Time.timeScale = 0;
+        UIManager.Ins.OpenUI<UIPauseSetting>();
+    }
+
+    private void OnReplay() {
+        ChangeState(GameState.GamePlay);
+        Time.timeScale = 1;
+    }
+
+    private void OnLose() {
+        ChangeState(GameState.Pause);
+        UIManager.Ins.OpenUI<UILose>();
+    }
+
+    #endregion
+
+    private void AddCoin(Vector3 pos) {
         ++coin;
         Pref.Coin = coin;
         ParticlePool.Play(ParticleType.CollectCoin, pos, Quaternion.identity);

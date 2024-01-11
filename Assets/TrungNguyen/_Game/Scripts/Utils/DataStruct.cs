@@ -37,12 +37,30 @@ public enum EventID {
 	AddCoin,
 	SavePoint,
 	LowerFlag,
-	Win
+	Win,
+	Lose,
+	StartGame,
+	MainMenu,
+	Resume,
+	Pause,
+	Replay,
+	Revive
+}
+
+public enum SkinType {
+	Mario1,
+	Mario2,
+	Naruto1,
+	Naruto2,
+	Dino1,
+	Dino2,
 }
 
 public enum PrefKey {
 	Coin,
-	Level
+	Level,
+	CurrentSkin,
+	SkinsPurchased
 }
 
 public enum ParticleType {

@@ -34,14 +34,14 @@ public class Plant : MonoBehaviour
     
     private void ChangeAnim(string animName) {
         if (skeleton.AnimationName != animName) {
-            skeleton.AnimationName = animName;
+            skeleton.state.SetAnimation(0, animName, true);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (IsDead) return;
         if (other.CompareTag(GameTag.Player.ToString())) {
-            Debug.Log("DIE");
+            GameManager.Ins.player.OnDeath();
         }
     }
 }

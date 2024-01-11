@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     
     protected void ChangeAnim(string animName) {
         if (skeleton.AnimationName != animName) {
-            skeleton.AnimationName = animName;
+            skeleton.state.SetAnimation(0, animName, true);
         }
     }
 
@@ -87,14 +87,14 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag(GameTag.Player.ToString())) {
-            if (!isDead) {
+            if (!isDead && !GameManager.Ins.player.IsFalling) {
                 GameManager.Ins.player.OnDeath();
             }
         }
     }
 
     private void Update() {
-        if (currentState != null && !isDead) {
+        if (GameManager.Ins.IsState(GameState.GamePlay) && currentState != null && !isDead) {
             currentState.OnExcute(this);
         }
     }

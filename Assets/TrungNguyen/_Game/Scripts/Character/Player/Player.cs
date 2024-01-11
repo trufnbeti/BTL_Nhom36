@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SkeletonAnimation skeleton;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform explosionPoint;
     [SerializeField] private GameObject playerModel;
     [SerializeField] private Collider2D collider2D;
     
@@ -37,27 +38,41 @@ public class Player : MonoBehaviour {
     public bool IsFalling => rb.velocity.y < 0 && !isGrounded;
     #endregion
 
-    public void OnDeath() {
-        if (IsDead) return;
-        isDead = true;
-        GameManager.Ins.ChangeState(GameState.GameEnd);
-        collider2D.isTrigger = true;
-        rb.velocity = Vector2.zero;
-        rb.AddForce(Vector2.up * jumpForce);
-        ChangeAnim(PlayerAnim.die.ToString());
+    public int Hp {
+        get => hp;
+        set => hp = value;
     }
+
 
     private void Awake() {
         tf = transform;
     }
-    
+
     public void OnInit() {
-        tf = transform;
         ChangeAnim(PlayerAnim.idle.ToString());
+        isDead = false;
+        rb.velocity = Vector2.zero;
         playerModel.transform.localScale = Constant.POWER_OFF;
         collider2D.isTrigger = false;
         this.RegisterListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
         this.RegisterListener(EventID.Win, (param) => WinGame((List<Transform>) param));
+    }
+    
+    public void OnDeath() {
+        if (IsDead) return;
+        isDead = true;
+        GameManager.Ins.ChangeState(GameState.GameEnd);
+        ParticlePool.Play(ParticleType.FireExplosion, explosionPoint.position, Quaternion.identity);
+        collider2D.isTrigger = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(Vector2.up * jumpForce);
+        ChangeAnim(PlayerAnim.die.ToString());
+        hp--;
+        if (Hp > 0) {
+            StartCoroutine(WaitForRevive());
+        } else {
+            StartCoroutine(WaitForShowLoseUI());
+        }
     }
 
     public void HitEnemy() {
@@ -109,6 +124,8 @@ public class Player : MonoBehaviour {
         StartCoroutine(WaitForConfetti(pos));
     }
 
+    #region IEnumerator
+
     private IEnumerator WaitForPowerUp() {
         for (int i = 0; i < 5; ++i) {
             yield return CacheComponent.GetWFS(Constant.TIME_BLINK);
@@ -130,10 +147,17 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private IEnumerator WaitForDespawn() {
+    private IEnumerator WaitForRevive() {
         yield return CacheComponent.GetWFS(Constant.TIME_DESPAWN_PLAYER);
-        OnDespawn();
+        this.PostEvent(EventID.Revive);
     }
+
+    private IEnumerator WaitForShowLoseUI() {
+        yield return CacheComponent.GetWFS(Constant.TIME_DESPAWN_PLAYER);
+        this.PostEvent(EventID.Lose);
+    }
+
+    #endregion
 
     private void RaceToWin() {
         Vector2 move = new Vector2(speed, rb.velocity.y);
@@ -159,7 +183,7 @@ public class Player : MonoBehaviour {
 
     private void ChangeAnim(string animName) {
         if (skeleton.AnimationName != animName) {
-            skeleton.AnimationName = animName;
+            skeleton.state.SetAnimation(0, animName, true);
         }
     }
     
@@ -169,17 +193,19 @@ public class Player : MonoBehaviour {
 
     private void CheckHitEnemy() {
         RaycastHit2D hit;
-        hit = Physics2D.BoxCast(tf.position, new Vector2(1f - 0.2f, 0.1f), 0, Vector2.down, 1f, enemyLayer);
+        hit = Physics2D.BoxCast(tf.position, new Vector2(1f, 0.1f), 0, Vector2.down, 1f, enemyLayer);
         if (hit && IsFalling) {
             Enemy e = CacheComponent.GetEnemy(hit.collider);
+            if (e is not Enemy) return;
             if (e.IsDead) {
                 return;
             }
 
-            if (!IsDead) {
+            // if (!IsDead) {
                 HitEnemy();
-            }
-            e.OnDespawn();
+                e.OnDespawn();
+                // e.IsDead
+            // }
         }
     }
     
