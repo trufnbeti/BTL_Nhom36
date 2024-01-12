@@ -11,13 +11,13 @@ public class UIGamePlay : UICanvas
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Text coinTxt;
 
-    private void OnDisable() {
-        this.RemoveListener(EventID.AddCoin, (_) => UpdateCoin());
+    private void OnEnable() {
+        this.RegisterListener(EventID.AddCoin, (_) => UpdateCoin());
+        UpdateCoin();
     }
 
-    protected override void OnInit() {
-        UpdateCoin();
-        this.RegisterListener(EventID.AddCoin, (_) => UpdateCoin());
+    private void OnDisable() {
+        this.RemoveListener(EventID.AddCoin, (_) => UpdateCoin());
     }
 
     public void OnBtnSettingClick() {

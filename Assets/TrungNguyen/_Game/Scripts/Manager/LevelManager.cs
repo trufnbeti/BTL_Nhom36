@@ -9,7 +9,7 @@ public class LevelManager : Singleton<LevelManager>
 	private Level currentLevel;
 	private Vector3 startPoint;
 
-	private void Start() {
+	private void OnEnable() {
 		this.RegisterListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
 		this.RegisterListener(EventID.Replay, (_) => OnReset());
 		this.RegisterListener(EventID.Revive, (_) => OnRevive());

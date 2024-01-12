@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
         tf = transform;
     }
 
-    private void Start() {
+    private void OnEnable() {
         this.RegisterListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
         this.RegisterListener(EventID.Win, (param) => WinGame((List<Transform>) param));
         this.RegisterListener(EventID.PlayerDie, (_) => OnDeath());

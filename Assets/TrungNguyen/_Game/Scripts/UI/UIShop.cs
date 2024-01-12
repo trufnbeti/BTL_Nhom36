@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spine.Unity;
@@ -18,8 +19,8 @@ public class UIShop : UICanvas {
 	private string nextSkin;
 	private CharacterSkin currentSkin;
 	private int[] skinStatus = new int[6];
-	
-	protected override void OnInit() {
+
+	private void OnEnable() {
 		skinData = DataManager.Ins.skinData;
 		skinStatus = DataManager.Ins.playerData.skinStatus;
 		listSkin = skinData.skins;

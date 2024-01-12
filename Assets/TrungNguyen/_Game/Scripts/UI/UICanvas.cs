@@ -18,7 +18,7 @@ public class UICanvas : MonoBehaviour
 
 	//Init default Canvas
 	//khoi tao gia tri canvas
-	protected virtual void OnInit()
+	protected void OnInit()
 	{
 		// m_RectTransform = GetComponent<RectTransform>();
 		// m_Animator = GetComponent<Animator>();
