@@ -11,20 +11,21 @@ public class LevelManager : Singleton<LevelManager>
 	private Vector3 startPoint;
 
 	private void Awake() {
-		currentLevelIdx = Pref.Level;
+		currentLevelIdx = DataManager.Ins.Level;
 	}
 
 	private void Start() {
-		OnReset();
 		this.RegisterListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
 		this.RegisterListener(EventID.Replay, (_) => OnReset());
 		this.RegisterListener(EventID.Revive, (_) => OnRevive());
+		this.RegisterListener(EventID.NextLevel, (_) => OnNextLevel());
 	}
 
 	private void OnDisable() {
 		this.RemoveListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
 		this.RemoveListener(EventID.Replay, (_) => OnReset());
 		this.RemoveListener(EventID.Revive, (_) => OnRevive());
+		this.RemoveListener(EventID.NextLevel, (_) => OnNextLevel());
 	}
 
 	#region Event
@@ -42,6 +43,12 @@ public class LevelManager : Singleton<LevelManager>
 	private void OnRevive() {
 		GameManager.Ins.ChangeState(GameState.GamePlay);
 		OnInit();
+	}
+
+	private void OnNextLevel() {
+		currentLevelIdx = currentLevelIdx % levels.Count + 1;
+		DataManager.Ins.Level = currentLevelIdx;
+		this.PostEvent(EventID.Replay);
 	}
 
 	#endregion

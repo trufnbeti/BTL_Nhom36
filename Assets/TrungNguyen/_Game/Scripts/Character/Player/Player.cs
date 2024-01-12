@@ -48,7 +48,14 @@ public class Player : MonoBehaviour {
         tf = transform;
     }
 
+    private void OnDisable() {
+        this.RemoveListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
+        this.RemoveListener(EventID.Win, (param) => WinGame((List<Transform>) param));
+    }
+
     public void OnInit() {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        ChangeSkin();
         ChangeAnim(PlayerAnim.idle.ToString());
         isDead = false;
         rb.velocity = Vector2.zero;
@@ -102,9 +109,6 @@ public class Player : MonoBehaviour {
         bullet.OnInit(isRight ? 1 : -1);
     }
 
-    private void OnDespawn() {
-        gameObject.SetActive(false);
-    }
     private void LowerFlag(Vector3 pos) {
         GameManager.Ins.ChangeState(GameState.GameEnd);
         rb.velocity = Vector2.zero;
@@ -145,6 +149,9 @@ public class Player : MonoBehaviour {
             yield return CacheComponent.GetWFS(0.5f);
             ParticlePool.Play(ParticleType.Confetti, pos[i].position, Quaternion.identity);
         }
+
+        yield return CacheComponent.GetWFS(0.5f);
+        UIManager.Ins.OpenUI<UIWin>();
     }
 
     private IEnumerator WaitForRevive() {
@@ -189,6 +196,10 @@ public class Player : MonoBehaviour {
     
     private bool CheckGrounded() {
         return Physics2D.BoxCast(tf.position, new Vector2(1f - 0.2f, 0.1f), 0, Vector2.down, 1f, groundLayer);
+    }
+
+    private void ChangeSkin() {
+        skeleton.skeleton.SetSkin(DataManager.Ins.skinData.skins[DataManager.Ins.IdSkin].skinName);
     }
 
     private void CheckHitEnemy() {

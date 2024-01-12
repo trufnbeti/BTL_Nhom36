@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager> {
-    [SerializeField] private int coin;
     public Player player;
     public Camera cam;
     [SerializeField]private GameState _gameState;
@@ -27,7 +26,6 @@ public class GameManager : Singleton<GameManager> {
     }
     
     private void Start() {
-        coin = Pref.Coin;
         ChangeState(GameState.MainMenu);
         UIManager.Ins.OpenUI<UIMainMenu>();
         this.RegisterListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
@@ -37,6 +35,8 @@ public class GameManager : Singleton<GameManager> {
         this.RegisterListener(EventID.Pause, (_) => OnPause());
         this.RegisterListener(EventID.Replay, (_) => OnReplay());
         this.RegisterListener(EventID.Lose, (_) => OnLose());
+        this.RegisterListener(EventID.NextLevel, (_) => OnNextLevel());
+        this.RegisterListener(EventID.OpenShop, (_) => OnOpenShop());
     }
 
     private void OnDisable() {
@@ -46,7 +46,9 @@ public class GameManager : Singleton<GameManager> {
         this.RemoveListener(EventID.Resume, (_) => OnResume());
         this.RemoveListener(EventID.Pause, (_) => OnPause());
         this.RemoveListener(EventID.Replay, (_) => OnReplay());
-        this.RegisterListener(EventID.Lose, (_) => OnLose());
+        this.RemoveListener(EventID.Lose, (_) => OnLose());
+        this.RemoveListener(EventID.NextLevel, (_) => OnNextLevel());
+        this.RemoveListener(EventID.OpenShop, (_) => OnOpenShop());
     }
 
     #region Event
@@ -54,6 +56,7 @@ public class GameManager : Singleton<GameManager> {
     private void OnStartGame() {
         ChangeState(GameState.GamePlay);
         UIManager.Ins.OpenUI<UIGamePlay>();
+        this.PostEvent(EventID.Replay);
     }
 
     private void OnMainMenu() {
@@ -85,11 +88,18 @@ public class GameManager : Singleton<GameManager> {
         UIManager.Ins.OpenUI<UILose>();
     }
 
+    private void OnNextLevel() {
+        ChangeState(GameState.GamePlay);
+    }
+
+    private void OnOpenShop() {
+        UIManager.Ins.OpenUI<UIShop>();
+    }
+
     #endregion
 
     private void AddCoin(Vector3 pos) {
-        ++coin;
-        Pref.Coin = coin;
+        DataManager.Ins.Coin += 1;
         ParticlePool.Play(ParticleType.CollectCoin, pos, Quaternion.identity);
     }
 

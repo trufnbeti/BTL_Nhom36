@@ -33,6 +33,20 @@ public enum PoolType {
 	Bullet = 1
 }
 
+public enum SoundType {
+	None = -1,
+	MainMenu = 0,
+	ButtonClick = 1
+}
+
+public enum ParticleType {
+	None = -1,
+	CollectCoin = 0,
+	FireExplosion = 1,
+	BrickExplosion = 2,
+	Confetti = 3
+}
+
 public enum EventID {
 	AddCoin,
 	SavePoint,
@@ -44,29 +58,11 @@ public enum EventID {
 	Resume,
 	Pause,
 	Replay,
-	Revive
-}
-
-public enum SkinType {
-	Mario1,
-	Mario2,
-	Naruto1,
-	Naruto2,
-	Dino1,
-	Dino2,
+	Revive,
+	NextLevel,
+	OpenShop
 }
 
 public enum PrefKey {
-	Coin,
-	Level,
-	CurrentSkin,
-	SkinsPurchased
-}
-
-public enum ParticleType {
-	None = -1,
-	CollectCoin = 0,
-	FireExplosion = 1,
-	BrickExplosion = 2,
-	Confetti = 3
+	PlayerData
 }

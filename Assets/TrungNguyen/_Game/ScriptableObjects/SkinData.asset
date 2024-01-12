@@ -14,32 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skins:
   - index: 0
+    state: 2
     skinType: 5
     skinName: 3_normal
     price: 0
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 54b7364e9840b7f40ba695ca11d5e5dd, type: 3}
   - index: 1
+    state: 0
     skinType: 4
     skinName: 3_bomber
     price: 50
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 1d7b01fbe374d2d47a65f8ff03813f1e, type: 3}
   - index: 2
+    state: 0
     skinType: 0
     skinName: 1_bomber
     price: 100
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 5d3c48820ea516543bb32d685ca84a33, type: 3}
   - index: 3
+    state: 0
     skinType: 1
     skinName: 1_normal
     price: 100
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 68002253281f01c418009d39c46156b7, type: 3}
   - index: 4
+    state: 0
     skinType: 2
     skinName: 2_bomber
     price: 200
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 262625c71bf371140acb79074529660e, type: 3}
   - index: 5
+    state: 0
     skinType: 3
     skinName: 2_normal
     price: 200
-    skeletonAnimation: {fileID: 8114230079881450493, guid: 96c3b2a2f3b56564c814953f31af039d, type: 3}

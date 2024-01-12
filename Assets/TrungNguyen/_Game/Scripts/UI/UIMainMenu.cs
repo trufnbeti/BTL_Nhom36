@@ -8,4 +8,9 @@ public class UIMainMenu : UICanvas
         this.PostEvent(EventID.StartGame);
         CloseDirectly();
     }
+    
+    public void OnBtnShopClick() {
+        this.PostEvent(EventID.OpenShop);
+        CloseDirectly();
+    }
 }

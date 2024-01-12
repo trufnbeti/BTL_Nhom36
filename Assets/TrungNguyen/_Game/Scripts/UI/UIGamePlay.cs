@@ -9,9 +9,23 @@ public class UIGamePlay : UICanvas
     [SerializeField] private List<Image> hearts;
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
+    [SerializeField] private Text coinTxt;
+
+    private void OnDisable() {
+        this.RemoveListener(EventID.AddCoin, (_) => UpdateCoin());
+    }
+
+    protected override void OnInit() {
+        UpdateCoin();
+        this.RegisterListener(EventID.AddCoin, (_) => UpdateCoin());
+    }
 
     public void OnBtnSettingClick() {
         this.PostEvent(EventID.Pause);
+    }
+
+    private void UpdateCoin() {
+        coinTxt.text = DataManager.Ins.Coin.ToString();
     }
 
     private void Update() {
