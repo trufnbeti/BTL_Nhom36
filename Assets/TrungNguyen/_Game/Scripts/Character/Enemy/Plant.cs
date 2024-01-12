@@ -41,7 +41,7 @@ public class Plant : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (IsDead) return;
         if (other.CompareTag(GameTag.Player.ToString())) {
-            GameManager.Ins.player.OnDeath();
+            this.PostEvent(EventID.PlayerDie);
         }
     }
 }

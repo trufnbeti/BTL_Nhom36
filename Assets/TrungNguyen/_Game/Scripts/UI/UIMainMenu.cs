@@ -6,6 +6,7 @@ public class UIMainMenu : UICanvas
 {
     public void OnBtnPlayClick() {
         this.PostEvent(EventID.StartGame);
+        // SoundManager.Ins.
         CloseDirectly();
     }
     

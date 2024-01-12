@@ -7,12 +7,7 @@ public class LevelManager : Singleton<LevelManager>
 {
 	[SerializeField] private List<Level> levels;
 	private Level currentLevel;
-	private int currentLevelIdx;
 	private Vector3 startPoint;
-
-	private void Awake() {
-		currentLevelIdx = DataManager.Ins.Level;
-	}
 
 	private void Start() {
 		this.RegisterListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
@@ -35,7 +30,7 @@ public class LevelManager : Singleton<LevelManager>
 		GameManager.Ins.player.tf.position = startPoint;
 	}
 	private void OnReset() {
-		LoadLevel(currentLevelIdx);
+		LoadLevel(DataManager.Ins.Level);
 		GameManager.Ins.player.Hp = Constant.MAX_HEALTH;
 		OnInit();
 	}
@@ -46,8 +41,7 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
 	private void OnNextLevel() {
-		currentLevelIdx = currentLevelIdx % levels.Count + 1;
-		DataManager.Ins.Level = currentLevelIdx;
+		DataManager.Ins.Level = DataManager.Ins.Level % levels.Count + 1;
 		this.PostEvent(EventID.Replay);
 	}
 

@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag(GameTag.Player.ToString())) {
             if (!isDead && !GameManager.Ins.player.IsFalling) {
-                GameManager.Ins.player.OnDeath();
+                this.PostEvent(EventID.PlayerDie);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,10 @@ public class SoundManager : Singleton<SoundManager>
     public bool IsMuted {
         get => isMuted;
         set => isMuted = value;
+    }
+
+    private void OnDisable() {
+        MuteAll();
     }
 
     public bool IsLoaded(SoundType type) {

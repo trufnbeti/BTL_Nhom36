@@ -26,8 +26,6 @@ public class GameManager : Singleton<GameManager> {
     }
     
     private void Start() {
-        ChangeState(GameState.MainMenu);
-        UIManager.Ins.OpenUI<UIMainMenu>();
         this.RegisterListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
         this.RegisterListener(EventID.StartGame, (_) => OnStartGame());
         this.RegisterListener(EventID.MainMenu, (_) => OnMainMenu());
@@ -37,6 +35,7 @@ public class GameManager : Singleton<GameManager> {
         this.RegisterListener(EventID.Lose, (_) => OnLose());
         this.RegisterListener(EventID.NextLevel, (_) => OnNextLevel());
         this.RegisterListener(EventID.OpenShop, (_) => OnOpenShop());
+        this.PostEvent(EventID.MainMenu);
     }
 
     private void OnDisable() {
@@ -64,6 +63,7 @@ public class GameManager : Singleton<GameManager> {
         Time.timeScale = 1;
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI<UIMainMenu>();
+        SoundManager.Ins.Play(SoundType.MainMenu);
     }
 
     private void OnResume() {

@@ -36,7 +36,12 @@ public enum PoolType {
 public enum SoundType {
 	None = -1,
 	MainMenu = 0,
-	ButtonClick = 1
+	ButtonClick = 1,
+	Jump = 2,
+	JumpOnEnemy = 3,
+	EnemyDie = 4,
+	PlayerToBig = 5,
+	Background = 6
 }
 
 public enum ParticleType {
@@ -60,7 +65,8 @@ public enum EventID {
 	Replay,
 	Revive,
 	NextLevel,
-	OpenShop
+	OpenShop,
+	PlayerDie
 }
 
 public enum PrefKey {

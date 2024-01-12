@@ -48,9 +48,17 @@ public class Player : MonoBehaviour {
         tf = transform;
     }
 
+    private void Start() {
+        this.RegisterListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
+        this.RegisterListener(EventID.Win, (param) => WinGame((List<Transform>) param));
+        this.RegisterListener(EventID.PlayerDie, (_) => OnDeath());
+    }
+
     private void OnDisable() {
         this.RemoveListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
         this.RemoveListener(EventID.Win, (param) => WinGame((List<Transform>) param));
+        this.RemoveListener(EventID.PlayerDie, (_) => OnDeath());
+        
     }
 
     public void OnInit() {
@@ -61,8 +69,6 @@ public class Player : MonoBehaviour {
         rb.velocity = Vector2.zero;
         playerModel.transform.localScale = Constant.POWER_OFF;
         collider2D.isTrigger = false;
-        this.RegisterListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
-        this.RegisterListener(EventID.Win, (param) => WinGame((List<Transform>) param));
     }
     
     public void OnDeath() {
@@ -98,6 +104,7 @@ public class Player : MonoBehaviour {
     public void Jump() {
         if (!canJump || !GameManager.Ins.IsState(GameState.GamePlay)) return;
         canJump = false;
+        SoundManager.Ins.Play(SoundType.Jump);
         isJumping = true;
         rb.velocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up);
