@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128ca792e39a7ce4d973eb77072593e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doTween: {fileID: 2544387617235377964}
 --- !u!61 &2609225273403955572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2544387617235377961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000076293945, y: 0.7773, z: -30.855125}
+  m_LocalPosition: {x: 0.0000076293945, y: 0.7773, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateType: 0
   isSpeedBased: 0
-  hasOnStart: 1
+  hasOnStart: 0
   hasOnPlay: 0
   hasOnUpdate: 0
   hasOnStepComplete: 0
