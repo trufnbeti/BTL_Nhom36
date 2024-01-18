@@ -10,17 +10,27 @@ public class UIGamePlay : UICanvas
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Text coinTxt;
-
+    
+    Action<object> actionAddCoin;
+    
     private void OnEnable() {
-        this.RegisterListener(EventID.AddCoin, (_) => UpdateCoin());
+        actionAddCoin = (param) => UpdateCoin();
+    }
+
+    public override void Open() {
+        base.Open();
+        this.RegisterListener(EventID.AddCoin, actionAddCoin);
         UpdateCoin();
     }
 
-    private void OnDisable() {
-        this.RemoveListener(EventID.AddCoin, (_) => UpdateCoin());
+
+    public override void CloseDirectly() {
+        this.RemoveListener(EventID.AddCoin, actionAddCoin);
+        base.CloseDirectly();
     }
 
     public void OnBtnSettingClick() {
+        SoundManager.Ins.PlaySound(SoundType.ButtonClick);
         this.PostEvent(EventID.Pause);
     }
 

@@ -14,41 +14,68 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     private Dictionary<SoundType, AudioSource> sounds = new Dictionary<SoundType, AudioSource>();
+    private Dictionary<SoundType, AudioSource> musics = new Dictionary<SoundType, AudioSource>();
 
-    public bool isMuted = false;
+    #region event
 
-    public bool IsMuted {
-        get => isMuted;
-        set => isMuted = value;
+    Action<object> actionSound;
+    Action<object> actionMusic;
+
+    #endregion
+    
+    private void Start() {
+        PlayMusic(SoundType.MainMenu);
+    }
+
+    private void OnEnable() {
+        actionSound = (param) => OnSwitchSound();
+        actionMusic = (param) => OnSwitchMusic();
+        this.RegisterListener(EventID.SwitchSound, actionSound);
+        this.RegisterListener(EventID.SwitchMusic, actionMusic);
     }
 
     private void OnDisable() {
-        MuteAll();
+        this.RemoveListener(EventID.SwitchSound, actionSound);
+        this.RemoveListener(EventID.SwitchMusic, actionMusic);
     }
 
     public bool IsLoaded(SoundType type) {
-        return sounds.ContainsKey(type);
+        return sounds.ContainsKey(type) || musics.ContainsKey(type);
     }
 
-    public void Play(SoundType type) {
-        if (isMuted) return;
+    public void PlayMusic(SoundType type) {
+        if (!IsLoaded(type)) {
+            musics.Add(type, GetAudio(type));
+            musics[type].Play();
+            OnSwitchMusic();
+        }
+        musics[type].Play();
+    }
+
+    public void PlaySound(SoundType type) {
         if (!IsLoaded(type)) {
             sounds.Add(type, GetAudio(type));
             sounds[type].Play();
+            OnSwitchSound();
         }
         sounds[type].Play();
     }
 
-    public void Mute(SoundType type) {
+    public void MuteSound(SoundType type) {
         foreach (var item in sounds) {
             if (!item.Value) {
                 item.Value.Stop();
             }
         }
     }
+    
+    public void MuteMusic() {
+        foreach (var item in musics) {
+            item.Value.Stop();
+        }
+    }
 
     public void MuteAll() {
-        isMuted = true;
         foreach (var item in sounds) {
             item.Value.Stop();
         }
@@ -64,6 +91,18 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         return null;
+    }
+
+    private void OnSwitchSound() {
+        foreach (var item in sounds) {
+            item.Value.volume = DataManager.Ins.IsSound ? 0.5f : 0;
+        }
+    }
+    
+    private void OnSwitchMusic() {
+        foreach (var item in musics) {
+            item.Value.volume = DataManager.Ins.IsMusic ? 0.5f : 0;
+        }
     }
 
 }

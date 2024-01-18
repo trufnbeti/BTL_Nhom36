@@ -44,6 +44,22 @@ public class DataManager : Singleton<DataManager>
 		get => playerData.idSkin;
 	}
 
+	public bool IsSound {
+		set {
+			playerData.isSound = value;
+			Pref.PlayerData = playerData;
+		}
+		get => playerData.isSound;
+	}
+	
+	public bool IsMusic {
+		set {
+			playerData.isMusic = value;
+			Pref.PlayerData = playerData;
+		}
+		get => playerData.isMusic;
+	}
+
 	private void LoadData() {
 		playerData = Pref.PlayerData;
 	}
@@ -52,6 +68,10 @@ public class DataManager : Singleton<DataManager>
 [System.Serializable]
 public class PlayerData
 {
+	[Header("--------- Game Setting ---------")]
+	public bool isSound = true;
+	public bool isMusic = true;
+	[Header("--------- Data ---------")]
 	public int coin = 0;
 	public int level = 1;
 	public int idSkin = 0;

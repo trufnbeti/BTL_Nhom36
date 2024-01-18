@@ -8,6 +8,20 @@ public class GameManager : Singleton<GameManager> {
     public Camera cam;
     [SerializeField]private GameState _gameState;
     public bool IsState(GameState state) => _gameState == state;
+
+    #region event
+    
+    Action<object> actionAddCoin;
+    Action<object> actionStartGame;
+    Action<object> actionMainMenu;
+    Action<object> actionResume;
+    Action<object> actionPause;
+    Action<object> actionReplay;
+    Action<object> actionLose;
+    Action<object> actionNextLevel;
+    Action<object> actionOpenShop;
+
+    #endregion
     private  void Awake() {
         ChangeState(GameState.MainMenu);
         // Tranh viec nguoi choi cham da diem vao man hinh
@@ -30,27 +44,36 @@ public class GameManager : Singleton<GameManager> {
     }
     
     private void OnEnable() {
-        this.RegisterListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
-        this.RegisterListener(EventID.StartGame, (_) => OnStartGame());
-        this.RegisterListener(EventID.MainMenu, (_) => OnMainMenu());
-        this.RegisterListener(EventID.Resume, (_) => OnResume());
-        this.RegisterListener(EventID.Pause, (_) => OnPause());
-        this.RegisterListener(EventID.Replay, (_) => OnReplay());
-        this.RegisterListener(EventID.Lose, (_) => OnLose());
-        this.RegisterListener(EventID.NextLevel, (_) => OnNextLevel());
-        this.RegisterListener(EventID.OpenShop, (_) => OnOpenShop());
+        actionAddCoin = (param) => AddCoin((Vector3)param);
+        actionStartGame = (param) => OnStartGame();
+        actionMainMenu = (param) => OnMainMenu();
+        actionResume = (param) => OnResume();
+        actionPause = (param) => OnPause();
+        actionReplay = (param) => OnReplay();
+        actionLose = (param) => OnLose();
+        actionNextLevel = (param) => OnNextLevel();
+        actionOpenShop = (param) => OnOpenShop();
+        this.RegisterListener(EventID.AddCoin, actionAddCoin);
+        this.RegisterListener(EventID.StartGame, actionStartGame);
+        this.RegisterListener(EventID.MainMenu, actionMainMenu);
+        this.RegisterListener(EventID.Resume, actionResume);
+        this.RegisterListener(EventID.Pause, actionPause);
+        this.RegisterListener(EventID.Replay, actionReplay);
+        this.RegisterListener(EventID.Lose, actionLose);
+        this.RegisterListener(EventID.NextLevel, actionNextLevel);
+        this.RegisterListener(EventID.OpenShop, actionOpenShop);
     }
 
     private void OnDisable() {
-        this.RemoveListener(EventID.AddCoin, (param) => AddCoin((Vector3) param));
-        this.RemoveListener(EventID.StartGame, (_) => OnStartGame());
-        this.RemoveListener(EventID.MainMenu, (_) => OnMainMenu());
-        this.RemoveListener(EventID.Resume, (_) => OnResume());
-        this.RemoveListener(EventID.Pause, (_) => OnPause());
-        this.RemoveListener(EventID.Replay, (_) => OnReplay());
-        this.RemoveListener(EventID.Lose, (_) => OnLose());
-        this.RemoveListener(EventID.NextLevel, (_) => OnNextLevel());
-        this.RemoveListener(EventID.OpenShop, (_) => OnOpenShop());
+        this.RemoveListener(EventID.AddCoin, actionAddCoin);
+        this.RemoveListener(EventID.StartGame, actionStartGame);
+        this.RemoveListener(EventID.MainMenu, actionMainMenu);
+        this.RemoveListener(EventID.Resume, actionResume);
+        this.RemoveListener(EventID.Pause, actionPause);
+        this.RemoveListener(EventID.Replay, actionReplay);
+        this.RemoveListener(EventID.Lose, actionLose);
+        this.RemoveListener(EventID.NextLevel, actionNextLevel);
+        this.RemoveListener(EventID.OpenShop, actionOpenShop);
     }
 
     #region Event
@@ -66,7 +89,6 @@ public class GameManager : Singleton<GameManager> {
         Time.timeScale = 1;
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI<UIMainMenu>();
-        // SoundManager.Ins.Play(SoundType.MainMenu);
     }
 
     private void OnResume() {
@@ -103,6 +125,7 @@ public class GameManager : Singleton<GameManager> {
 
     private void AddCoin(Vector3 pos) {
         DataManager.Ins.Coin += 1;
+        SoundManager.Ins.PlaySound(SoundType.CollectCoin);
         ParticlePool.Play(ParticleType.CollectCoin, pos, Quaternion.identity);
     }
 

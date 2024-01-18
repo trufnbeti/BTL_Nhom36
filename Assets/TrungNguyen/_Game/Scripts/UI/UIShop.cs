@@ -20,7 +20,8 @@ public class UIShop : UICanvas {
 	private CharacterSkin currentSkin;
 	private int[] skinStatus = new int[6];
 
-	private void OnEnable() {
+	public override void Open() {
+		base.Open();
 		skinData = DataManager.Ins.skinData;
 		skinStatus = DataManager.Ins.playerData.skinStatus;
 		listSkin = skinData.skins;
@@ -33,6 +34,7 @@ public class UIShop : UICanvas {
 	}
 
 	public void OnBtnRightClick() {
+		SoundManager.Ins.PlaySound(SoundType.ButtonClick);
 		currentIdx = (currentIdx + 1) % totalSkin;
 		currentSkin = listSkin[currentIdx];
 		nextSkin = listSkin[currentIdx].skinName;
@@ -41,6 +43,7 @@ public class UIShop : UICanvas {
 	}
 	
 	public void OnBtnLeftClick() {
+		SoundManager.Ins.PlaySound(SoundType.ButtonClick);
 		currentIdx = (currentIdx + totalSkin - 1) % totalSkin;
 		currentSkin = listSkin[currentIdx];
 		nextSkin = currentSkin.skinName;
@@ -49,6 +52,7 @@ public class UIShop : UICanvas {
 	}
 
 	public void OnBtnPurchaseClick() {
+		SoundManager.Ins.PlaySound(SoundType.ButtonClick);
 		DataManager.Ins.Coin -= listSkin[currentIdx].price;
 		DisableAllBtn();
 		btnEquip.gameObject.SetActive(true);
@@ -57,6 +61,7 @@ public class UIShop : UICanvas {
 	}
 
 	public void OnBtnEquipClick() {
+		SoundManager.Ins.PlaySound(SoundType.ButtonClick);
 		DisableAllBtn();
 		btnEquipped.gameObject.SetActive(true);
 		skinStatus[DataManager.Ins.IdSkin] = 1;
@@ -65,6 +70,7 @@ public class UIShop : UICanvas {
 	}
 
 	public void OnBtnBackClick() {
+		SoundManager.Ins.PlaySound(SoundType.ButtonClick);
 		this.PostEvent(EventID.MainMenu);
 		CloseDirectly();
 	}

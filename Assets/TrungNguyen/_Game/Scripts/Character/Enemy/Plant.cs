@@ -18,10 +18,16 @@ public class Plant : MonoBehaviour
 
     public bool IsDead => isDead;
 
+    private void OnDisable() {
+        if (doTween != null) {
+            doTween.DOKill();
+        }
+    }
+
     public void OnDespawn() {
         if (IsDead) return;
         isDead = true;
-        doTween.DOPause();
+        doTween.DOKill();
         skeleton.loop = false;
         ChangeAnim(Anim.die.ToString());
         StartCoroutine(WaitForDespawn());

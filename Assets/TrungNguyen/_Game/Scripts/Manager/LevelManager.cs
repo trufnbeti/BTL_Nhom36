@@ -9,18 +9,31 @@ public class LevelManager : Singleton<LevelManager>
 	private Level currentLevel;
 	private Vector3 startPoint;
 
+	#region event
+
+	Action<object> actionSavePoint;
+	Action<object> actionReplay;
+	Action<object> actionRevive;
+	Action<object> actionNextLevel;
+
+	#endregion
+
 	private void OnEnable() {
-		this.RegisterListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
-		this.RegisterListener(EventID.Replay, (_) => OnReset());
-		this.RegisterListener(EventID.Revive, (_) => OnRevive());
-		this.RegisterListener(EventID.NextLevel, (_) => OnNextLevel());
+		actionSavePoint = (param) => SavePoint((Vector3)param);
+		actionReplay = (param) => OnReset();
+		actionRevive = (param) => OnRevive();
+		actionNextLevel = (param) => OnNextLevel();
+		this.RegisterListener(EventID.SavePoint, actionSavePoint);
+		this.RegisterListener(EventID.Replay, actionReplay);
+		this.RegisterListener(EventID.Revive, actionRevive);
+		this.RegisterListener(EventID.NextLevel, actionNextLevel);
 	}
 
 	private void OnDisable() {
-		this.RemoveListener(EventID.SavePoint, (param) => SavePoint((Vector3) param));
-		this.RemoveListener(EventID.Replay, (_) => OnReset());
-		this.RemoveListener(EventID.Revive, (_) => OnRevive());
-		this.RemoveListener(EventID.NextLevel, (_) => OnNextLevel());
+		this.RemoveListener(EventID.SavePoint, actionSavePoint);
+		this.RemoveListener(EventID.Replay, actionReplay);
+		this.RemoveListener(EventID.Revive, actionRevive);
+		this.RemoveListener(EventID.NextLevel, actionNextLevel);
 	}
 
 	#region Event

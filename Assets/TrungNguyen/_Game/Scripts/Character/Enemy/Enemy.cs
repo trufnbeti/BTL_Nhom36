@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     public void OnDespawn() {
         if (IsDead) return;
         isDead = true;
+        SoundManager.Ins.PlaySound(SoundType.EnemyDie);
         OnDeath();
     }
 
@@ -89,6 +90,8 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag(GameTag.Player.ToString())) {
             if (!isDead && !GameManager.Ins.player.IsFalling) {
                 this.PostEvent(EventID.PlayerDie);
+            } else {
+                OnDespawn();
             }
         }
     }

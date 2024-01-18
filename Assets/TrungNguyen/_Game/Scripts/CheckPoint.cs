@@ -10,6 +10,7 @@ public class CheckPoint : MonoBehaviour {
     private const string ANIM_CHECKPOINT = "checkpoint";
     
     private void SaveCheckPoint() {
+        SoundManager.Ins.PlaySound(SoundType.CollectCoin);
         this.PostEvent(EventID.SavePoint, transform.position);
         anim.SetTrigger(ANIM_CHECKPOINT);
     }

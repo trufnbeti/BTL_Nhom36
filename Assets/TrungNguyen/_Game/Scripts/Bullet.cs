@@ -15,6 +15,7 @@ public class Bullet : GameUnit
 	}
 
 	public override void OnDespawn() {
+		SoundManager.Ins.PlaySound(SoundType.EffectExplosion);
 		ParticlePool.Play(ParticleType.FireExplosion, TF.position, Quaternion.identity);
 		base.OnDespawn();
 	}
