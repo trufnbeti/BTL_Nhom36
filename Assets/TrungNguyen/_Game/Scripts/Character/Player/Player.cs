@@ -15,8 +15,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private Transform explosionPoint;
     [SerializeField] private GameObject playerModel;
     [SerializeField] private Collider2D collider2D;
-    
-    
+    [SerializeField] private GameObject magnet;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
 
@@ -38,6 +37,14 @@ public class Player : MonoBehaviour {
     public bool IsFalling => rb.velocity.y < 0 && !isGrounded;
     #endregion
 
+    #region event
+
+    Action<object> actionLowerFlag;
+    Action<object> actionWin;
+    Action<object> actionPlayerDie;
+
+    #endregion
+
     public int Hp {
         get => hp;
         set => hp = value;
@@ -49,23 +56,21 @@ public class Player : MonoBehaviour {
     }
 
     private void OnEnable() {
-        this.RegisterListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
-        this.RegisterListener(EventID.Win, (param) => WinGame((List<Transform>) param));
-        this.RegisterListener(EventID.PlayerDie, (_) => OnDeath());
-    }
-
-    private void OnDisable() {
-        this.RemoveListener(EventID.LowerFlag, (param) => LowerFlag((Vector3) param));
-        this.RemoveListener(EventID.Win, (param) => WinGame((List<Transform>) param));
-        this.RemoveListener(EventID.PlayerDie, (_) => OnDeath());
+        actionLowerFlag = (param) => LowerFlag((Vector3)param);
+        actionWin = (param) => WinGame((List<Transform>)param);
+        actionPlayerDie = (param) => OnDeath();
         
     }
 
     public void OnInit() {
+        this.RegisterListener(EventID.LowerFlag, actionLowerFlag);
+        this.RegisterListener(EventID.Win, actionWin);
+        this.RegisterListener(EventID.PlayerDie, actionPlayerDie);
         rb.bodyType = RigidbodyType2D.Dynamic;
         ChangeSkin();
         ChangeAnim(PlayerAnim.idle.ToString());
         isDead = false;
+        magnet.SetActive(false);
         rb.velocity = Vector2.zero;
         playerModel.transform.localScale = Constant.POWER_OFF;
         collider2D.isTrigger = false;
@@ -74,6 +79,10 @@ public class Player : MonoBehaviour {
     public void OnDeath() {
         if (IsDead) return;
         isDead = true;
+        this.RemoveListener(EventID.LowerFlag, actionLowerFlag);
+        this.RemoveListener(EventID.Win, actionWin);
+        this.RemoveListener(EventID.PlayerDie, actionPlayerDie);
+        SoundManager.Ins.PlaySound(SoundType.PlayerHitBrick);
         GameManager.Ins.ChangeState(GameState.GameEnd);
         ParticlePool.Play(ParticleType.FireExplosion, explosionPoint.position, Quaternion.identity);
         collider2D.isTrigger = true;
@@ -88,7 +97,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void OnMagnet() {
+        magnet.SetActive(true);
+    }
+
     public void HitEnemy() {
+        SoundManager.Ins.PlaySound(SoundType.JumpOnEnemy);
         rb.velocity = Vector2.zero;
         rb.AddForce(500 * Vector2.up);
         ChangeAnim(PlayerAnim.jump1.ToString());
@@ -97,6 +111,7 @@ public class Player : MonoBehaviour {
     public void OnPowerUp() {
         if (isPowerUp) return;
         isPowerUp = true;
+        SoundManager.Ins.PlaySound(SoundType.PlayerToBig);
         StartCoroutine(WaitForPowerUp());
     }
 
@@ -104,7 +119,7 @@ public class Player : MonoBehaviour {
     public void Jump() {
         if (!canJump || !GameManager.Ins.IsState(GameState.GamePlay)) return;
         canJump = false;
-        SoundManager.Ins.Play(SoundType.Jump);
+        SoundManager.Ins.PlaySound(SoundType.Jump);
         isJumping = true;
         rb.velocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up);
@@ -112,12 +127,16 @@ public class Player : MonoBehaviour {
     }
 
     public void Attack() {
+        if (!GameManager.Ins.IsState(GameState.GamePlay)) return;
+        SoundManager.Ins.PlaySound(SoundType.Shoot);
         Bullet bullet = SimplePool.Spawn<Bullet>(PoolType.Bullet, firePoint.position, Quaternion.identity);
         bullet.OnInit(isRight ? 1 : -1);
     }
 
     private void LowerFlag(Vector3 pos) {
         GameManager.Ins.ChangeState(GameState.GameEnd);
+        SoundManager.Ins.PlaySound(SoundType.GameWin);
+        SoundManager.Ins.MuteMusic();
         rb.velocity = Vector2.zero;
         if (tf.position.y > pos.y) {
             ChangeAnim(PlayerAnim.climb_down.ToString());
@@ -154,6 +173,7 @@ public class Player : MonoBehaviour {
     private IEnumerator WaitForConfetti(List<Transform> pos) {
         for (int i = 0; i < 3; ++i) {
             yield return CacheComponent.GetWFS(0.5f);
+            SoundManager.Ins.PlaySound(SoundType.Firework);
             ParticlePool.Play(ParticleType.Confetti, pos[i].position, Quaternion.identity);
         }
 
@@ -219,11 +239,10 @@ public class Player : MonoBehaviour {
                 return;
             }
 
-            // if (!IsDead) {
+            if (!IsDead) {
                 HitEnemy();
                 e.OnDespawn();
-                // e.IsDead
-            // }
+            }
         }
     }
     

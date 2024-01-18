@@ -16,7 +16,8 @@ public enum GameTag {
 	PlayerCollider,
 	Enemy,
 	Platform,
-	Plant
+	Plant,
+	Magnet
 }
 
 public enum GameState
@@ -41,7 +42,16 @@ public enum SoundType {
 	JumpOnEnemy = 3,
 	EnemyDie = 4,
 	PlayerToBig = 5,
-	Background = 6
+	Background = 6,
+	CollectCoin = 7,
+	BrickBreak = 8,
+	GameWin = 9,
+	Firework = 10,
+	PlayerHitBrick = 11,
+	Shoot = 12,
+	CollectMagnet = 13,
+	Water = 14,
+	EffectExplosion = 15
 }
 
 public enum ParticleType {
@@ -66,9 +76,16 @@ public enum EventID {
 	Revive,
 	NextLevel,
 	OpenShop,
-	PlayerDie
+	PlayerDie,
+	SwitchSound,
+	SwitchMusic,
 }
 
 public enum PrefKey {
 	PlayerData
+}
+
+public enum SoundCategory {
+	SoundFX,
+	Music
 }

@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Platform
   - Plant
+  - Magnet
   layers:
   - Default
   - TransparentFX
